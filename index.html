@@ -1,55 +1,106 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Word Generator with Meaning</title>
+  <title>Word Genius: Your Vocabulary Booster</title>
   <style>
     body {
       font-family: sans-serif;
-      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 0;
+      background-color: #f2f2f2; /* Light background */
     }
-    button {
-      background-color: #4CAF50;
+
+    h1 {
+      font-size: 2rem;
+      margin-top: 1rem;
+      color: #222; /* Deep, readable text */
+    }
+
+    #generate-button {
+      background-color: #4CAF50; /* Green accent */
       color: white;
       padding: 15px 32px;
-      text-align: center;
-      text-decoration: none;
-      display: inline-block;
-      font-size: 16px;
-      margin: 4px 2px;
-      cursor: pointer;
       border: none;
+      font-size: 16px;
+      cursor: pointer;
+      margin-top: 1rem;
+      border-radius: 5px;
+      /* Prevent text color change on hover */
+      filter: brightness(1);
     }
+
+    #generate-button:hover {
+      filter: brightness(1.1); /* Subtle brightness increase on hover */
+    }
+
     #word {
       font-size: 24px;
-      margin-bottom: 20px;
+      margin-top: 1rem;
+      color: #333; /* Darker, readable text */
     }
+
     #definition {
       font-style: italic;
+      color: #666; /* Text color for meaning */
+    }
+
+    #subject-select {
+      margin-top: 1rem;
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
     }
   </style>
 </head>
 <body>
-  <h1>Word Generator with Meaning</h1>
+  <h1>Word Genius: Your Vocabulary Booster</h1>
+  <select id="subject-select">
+    <option value="all">All Subjects</option>
+    <option value="english-competitive">English for Competitive Exams</option>
+    <option value="basic-english">Basic English</option>
+    <option value="financial">Financial</option>
+    <option value="business">Business</option>
+    <option value="science">Science</option>
+    <option value="design">Design</option>
+  </select>
   <button id="generate-button">Generate Random Word</button>
   <p id="word"></p>
   <p id="definition"></p>
 
   <script>
-    const wordList = ["apple", "beach", "computer", "dream", "friend", "guitar", "happy", "imagine", "journey", "knowledge"];
-    const definitionList = ["a sweet, edible fruit", "a sandy area next to a large body of water", "a machine that can be used to perform calculations and store data", "a sequence of thoughts, images, and sensations occurring during sleep", "a person who you like and trust", "a stringed instrument with six strings", "feeling joy and contentment", "to form a mental picture of something", "a trip or voyage", "information and understanding"];
+    const wordLists = {
+      "all": [
+        // Add your words and definitions here, categorized by subject
+      ],
+      "english-competitive": [
+        // ...
+      ],
+      // ... (other subjects)
+    };
 
     const generateButton = document.getElementById("generate-button");
     const wordDisplay = document.getElementById("word");
     const definitionDisplay = document.getElementById("definition");
+    const subjectSelect = document.getElementById("subject-select");
 
-    generateButton.addEventListener("click", () => {
+    function generateWord() {
+      const selectedSubject = subjectSelect.value;
+      const wordList = selectedSubject === "all" ? Object.values(wordLists).flat() : wordLists[selectedSubject];
       const randomIndex = Math.floor(Math.random() * wordList.length);
-      const chosenWord = wordList[randomIndex];
-      const chosenDefinition = definitionList[randomIndex];
+      const chosenWord = wordList[randomIndex].word;
+      const chosenDefinition = wordList[randomIndex].definition;
 
       wordDisplay.textContent = chosenWord;
       definitionDisplay.textContent = chosenDefinition;
-    });
+    }
+
+    generateButton.addEventListener("click", generateWord);
+    subjectSelect.addEventListener("change", generateWord); // Update on subject change
+
+    generateWord(); // Generate initial word on page load
   </script>
 </body>
 </html>
+
