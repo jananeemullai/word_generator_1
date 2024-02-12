@@ -1,114 +1,30 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Word Genius: Your Vocabulary Booster</title>
-  <style>
-    body {
-      font-family: sans-serif;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      margin: 0;
-      background-color: #f2f2f2; /* Light background */
-    }
-
-    h1 {
-      font-size: 2rem;
-      margin-top: 1rem;
-      color: #222; /* Deep, readable text */
-    }
-
-    #generate-button {
-      background-color: #4CAF50; /* Green accent */
-      color: white;
-      padding: 15px 32px;
-      border: none;
-      font-size: 16px;
-      cursor: pointer;
-      margin-top: 1rem;
-      border-radius: 5px;
-      /* Prevent text color change on hover */
-      filter: brightness(1);
-    }
-
-    #generate-button:hover {
-      filter: brightness(1.1); /* Subtle brightness increase on hover */
-    }
-
-    #word {
-      font-size: 24px;
-      margin-top: 1rem;
-      color: #333; /* Darker, readable text */
-    }
-
-    #definition {
-      font-style: italic;
-      color: #666; /* Text color for meaning */
-    }
-
-    #subject-select {
-      margin-top: 1rem;
-      padding: 8px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-    }
-  </style>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <h1>Word Genius: Your Vocabulary Booster</h1>
-  <select id="subject-select">
-    <option value="all">All Subjects</option>
-    <option value="english-competitive">English for Competitive Exams</option>
-    <option value="basic-english">Basic English</option>
-    <option value="financial">Financial</option>
-    <option value="business">Business</option>
-    <option value="science">Science</option>
-    <option value="design">Design</option>
-  </select>
-  <button id="generate-button">Generate Random Word</button>
-  <p id="word"></p>
-  <p id="definition"></p>
+  <form id="subject-form">
+    <label for="subject-select">Choose a Subject:</label>
+    <select id="subject-select">
+      <option value="all">All Subjects</option>
+      <option value="english-competitive">English for Competitive Exams</option>
+      <option value="basic-english">Basic English</option>
+      <option value="financial">Financial</option>
+      <option value="business">Business</option>
+      <option value="science">Science</option>
+      <option value="design">Design</option>
+    </select>
+    <button type="submit">Go to Word Generator</button>
+  </form>
 
-  <script>
-    const wordLists = {
-      "all": [
-        // Add your words and definitions here, categorized by subject
-      ],
-      "english-competitive": [
-        // ...
-      ],
-      // ... (other subjects)
-    };
-
-    const generateButton = document.getElementById("generate-button");
-    const wordDisplay = document.getElementById("word");
-    const definitionDisplay = document.getElementById("definition");
-    const subjectSelect = document.getElementById("subject-select");
-
-    function generateWord() {
-      const selectedSubject = subjectSelect.value;
-      const wordList = selectedSubject === "all" ? Object.values(wordLists).flat() : wordLists[selectedSubject];
-      const randomIndex = Math.floor(Math.random() * wordList.length);
-      const chosenWord = wordList[randomIndex].word;
-      const chosenDefinition = wordList[randomIndex].definition;
-
-      wordDisplay.textContent = chosenWord;
-      definitionDisplay.textContent = chosenDefinition;
-    }
-
-    generateButton.addEventListener("click", generateWord);
-    subjectSelect.addEventListener("change", generateWord); // Update on subject change
-
-    generateWord(); // Generate initial word on page load
-
-    "design": [
-  { word: "design thinking", definition: "A human-centered approach to problem-solving" },
-  { word: "visual design", definition: "The creation of visual components for websites, apps, etc." },
-  { word: "pattern", definition: "A recurring element or motif in design" },
-  { word: "theme", definition: "An overall mood or concept unifying a design" },
-  { word: "research", definition: "Gathering information to inform design decisions" },
-  // ... more word-definition pairs
-]
+  <script src="script.js"></script>
+</body>
+</html>
 
   </script>
 </body>
