@@ -1,10 +1,55 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Word Generator</title>
+  <title>Word Generator with Meaning</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      text-align: center;
+    }
+    button {
+      background-color: #4CAF50;
+      color: white;
+      padding: 15px 32px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      margin: 4px 2px;
+      cursor: pointer;
+      border: none;
+    }
+    #word {
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+    #definition {
+      font-style: italic;
+    }
+  </style>
 </head>
 <body>
-    <h1>Generated Word: {{ word }}</h1>
-    <p>Definition: {{ definition }}</p>
+  <h1>Word Generator with Meaning</h1>
+  <button id="generate-button">Generate Random Word</button>
+  <p id="word"></p>
+  <p id="definition"></p>
+
+  <script>
+    const wordList = ["apple", "beach", "computer", "dream", "friend", "guitar", "happy", "imagine", "journey", "knowledge"];
+    const definitionList = ["a sweet, edible fruit", "a sandy area next to a large body of water", "a machine that can be used to perform calculations and store data", "a sequence of thoughts, images, and sensations occurring during sleep", "a person who you like and trust", "a stringed instrument with six strings", "feeling joy and contentment", "to form a mental picture of something", "a trip or voyage", "information and understanding"];
+
+    const generateButton = document.getElementById("generate-button");
+    const wordDisplay = document.getElementById("word");
+    const definitionDisplay = document.getElementById("definition");
+
+    generateButton.addEventListener("click", () => {
+      const randomIndex = Math.floor(Math.random() * wordList.length);
+      const chosenWord = wordList[randomIndex];
+      const chosenDefinition = definitionList[randomIndex];
+
+      wordDisplay.textContent = chosenWord;
+      definitionDisplay.textContent = chosenDefinition;
+    });
+  </script>
 </body>
 </html>
